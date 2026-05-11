@@ -881,7 +881,7 @@ button { cursor: pointer; font-family: inherit; }
 .case-before {
   position: absolute;
   inset: 0;
-  filter: saturate(.25) brightness(.55);
+  filter: none;
 }
 
 /* AFTER — clipped overlay, starts at 50% */
@@ -894,8 +894,8 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 /* Placeholder backgrounds */
-.case-c1b { background: linear-gradient(145deg, #2a1a10 0%, #1a0e0a 100%); }
-.case-c1a { background: linear-gradient(145deg, #0d1a0d 0%, #0a1208 100%); }
+.case-c1b { background: url('../assets/images/before_1.png') center/cover no-repeat; }
+.case-c1a { background: url('../assets/images/after_1.png') center/cover no-repeat; }
 .case-c2b { background: linear-gradient(145deg, #101820 0%, #0c1018 100%); }
 .case-c2a { background: linear-gradient(145deg, #0c1c10 0%, #081410 100%); }
 .case-c3b { background: linear-gradient(145deg, #201818 0%, #180e0e 100%); }
