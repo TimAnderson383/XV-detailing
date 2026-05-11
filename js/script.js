@@ -456,14 +456,14 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closePriceMo
 
 /* ── BEFORE / AFTER SLIDERS ─────────── */
 document.querySelectorAll('[data-slider]').forEach(slider => {
-  const after  = slider.querySelector('.case-after');
+  const before = slider.querySelector('.case-before');
   const handle = slider.querySelector('.case-handle');
   let dragging = false;
 
   function setPos(clientX) {
     const rect = slider.getBoundingClientRect();
     const pct  = Math.max(2, Math.min(98, (clientX - rect.left) / rect.width * 100));
-    after.style.clipPath  = `inset(0 ${100 - pct}% 0 0)`;
+    before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
     handle.style.left     = pct + '%';
   }
 
