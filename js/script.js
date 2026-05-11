@@ -216,15 +216,33 @@ function getPreviewTime(v) {
   return parseFloat(v.dataset.preview ?? 1);
 }
 
-document.querySelectorAll('.srv-card__video').forEach(v => {
-  v.addEventListener('loadedmetadata', () => { v.currentTime = getPreviewTime(v); });
-});
+const isTouchDevice = window.matchMedia('(hover: none)').matches;
+
+function loadVideo(v) {
+  const source = v.querySelector('source[data-src]');
+  if (!source || source.src) return;
+  source.src = source.dataset.src;
+  v.load();
+  v.addEventListener('loadedmetadata', () => { v.currentTime = getPreviewTime(v); }, { once: true });
+}
 
 const videoCards = document.querySelectorAll('.srv-card--video');
+
+const videoLazyObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const v = entry.target.querySelector('video');
+    if (v) loadVideo(v);
+    videoLazyObserver.unobserve(entry.target);
+  });
+}, { rootMargin: '200px' });
+
+videoCards.forEach(card => videoLazyObserver.observe(card));
 
 function playCardVideo(card) {
   const v = card && card.querySelector('video');
   if (!v) return;
+  loadVideo(v);
   card.classList.add('is-playing');
   v.play();
 }
