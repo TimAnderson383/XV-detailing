@@ -260,7 +260,10 @@ allHotspots.forEach(hs => {
       activateHotspot(hs);
     }
     const target = document.querySelector(hotspotScrollMap[hs.dataset.delay]);
-    if (target) {
+    if (!target) return;
+    const isMobile = window.matchMedia('(hover: none)').matches;
+    const delay = (isMobile && !isOpen) ? 2000 : 0;
+    setTimeout(() => {
       const headerH = document.querySelector('.header')?.offsetHeight || 80;
       const y = target.getBoundingClientRect().top + window.pageYOffset - headerH;
       scrollingFromHotspot = true;
@@ -271,7 +274,7 @@ allHotspots.forEach(hs => {
         videoCards.forEach(c => c.style.pointerEvents = '');
         playCardVideo(target);
       }, 900);
-    }
+    }, delay);
   });
 });
 document.addEventListener('click', () => {
