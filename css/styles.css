@@ -636,6 +636,125 @@ button { cursor: pointer; font-family: inherit; }
   z-index: 1;
 }
 
+/* ── SERVICES ACCORDION ─────────────── */
+.srv-accordion {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.srl-item {
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.srl-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  text-align: left;
+  transition: color .2s;
+}
+.srl-head:hover { color: #fff; }
+.srl-item.open .srl-head { color: #fff; }
+
+.srl-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: .08em;
+  min-width: 24px;
+  opacity: .7;
+}
+
+.srl-name {
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 600;
+  flex: 1;
+  letter-spacing: -.01em;
+}
+
+.srl-hint {
+  font-size: 13px;
+  color: rgba(255,255,255,.35);
+  white-space: nowrap;
+}
+
+.srl-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  color: rgba(255,255,255,.5);
+  flex-shrink: 0;
+  transition: transform .3s, border-color .2s, color .2s;
+}
+.srl-item.open .srl-icon {
+  transform: rotate(180deg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.srl-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .35s ease;
+}
+.srl-item.open .srl-body {
+  grid-template-rows: 1fr;
+}
+.srl-body > * {
+  overflow: hidden;
+}
+
+.srl-subs {
+  list-style: none;
+  padding: 0 0 28px 44px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.srl-subs li {
+  font-size: 15px;
+  color: rgba(255,255,255,.55);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color .2s;
+}
+.srl-subs li::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  opacity: .6;
+}
+.srl-subs li:hover { color: rgba(255,255,255,.85); }
+
+.srl-body .btn {
+  margin: 0 0 28px 44px;
+  width: fit-content;
+}
+
+@media (max-width: 600px) {
+  .srl-head { gap: 12px; padding: 20px 0; }
+  .srl-hint { display: none; }
+  .srl-subs { padding-left: 28px; }
+  .srl-body .btn { margin-left: 28px; }
+}
+
 .srv-card__video {
   position: absolute;
   inset: 0;
