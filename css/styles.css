@@ -989,7 +989,7 @@ button { cursor: pointer; font-family: inherit; }
 
 .case-visual {
   position: relative;
-  height: 220px;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   cursor: col-resize;
   user-select: none;
@@ -1017,12 +1017,12 @@ button { cursor: pointer; font-family: inherit; }
 /* Placeholder backgrounds */
 .case-c1b { background: url('../assets/images/before_1.png') center/cover no-repeat; }
 .case-c1a { background: url('../assets/images/after_1.png') center/cover no-repeat; }
-.case-c2b { background: linear-gradient(145deg, #101820 0%, #0c1018 100%); }
-.case-c2a { background: linear-gradient(145deg, #0c1c10 0%, #081410 100%); }
-.case-c3b { background: linear-gradient(145deg, #201818 0%, #180e0e 100%); }
-.case-c3a { background: linear-gradient(145deg, #0d1824 0%, #081220 100%); }
-.case-c4b { background: linear-gradient(145deg, #281810 0%, #1c100a 100%); }
-.case-c4a { background: linear-gradient(145deg, #0d1e0d 0%, #081808 100%); }
+.case-c2b { background: url('../assets/images/before_2.png') center/cover no-repeat; }
+.case-c2a { background: url('../assets/images/after_2.png') center/cover no-repeat; }
+.case-c3b { background: url('../assets/images/before_3.png') center/cover no-repeat; }
+.case-c3a { background: url('../assets/images/after_3.png') center/cover no-repeat; }
+.case-c4b { background: url('../assets/images/before_4.png') center/cover no-repeat; }
+.case-c4a { background: url('../assets/images/after_4.png') center/cover no-repeat; }
 .case-c5b { background: linear-gradient(145deg, #201428 0%, #180e1e 100%); }
 .case-c5a { background: linear-gradient(145deg, #0c1820 0%, #081218 100%); }
 
