@@ -1024,17 +1024,6 @@ button { cursor: pointer; font-family: inherit; }
 .case-c5b { background: linear-gradient(145deg, #201428 0%, #180e1e 100%); }
 .case-c5a { background: linear-gradient(145deg, #0c1820 0%, #081218 100%); }
 
-@media (max-width: 768px) {
-  .case-c1b { background-image: url('../assets/images/before_1-sm.jpg'); }
-  .case-c1a { background-image: url('../assets/images/after_1-sm.jpg'); }
-  .case-c2b { background-image: url('../assets/images/before_2-sm.jpg'); }
-  .case-c2a { background-image: url('../assets/images/after_2-sm.jpg'); }
-  .case-c3b { background-image: url('../assets/images/before_3-sm.jpg'); }
-  .case-c3a { background-image: url('../assets/images/after_3-sm.jpg'); }
-  .case-c4b { background-image: url('../assets/images/before_4-sm.jpg'); }
-  .case-c4a { background-image: url('../assets/images/after_4-sm.jpg'); }
-}
-
 /* Draggable handle */
 .case-handle {
   position: absolute;
