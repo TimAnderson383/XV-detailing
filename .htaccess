@@ -1,0 +1,7 @@
+# Allow images to be loaded by external services (Telegram, VK, etc.)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpg|jpeg|png|webp|gif|svg)$">
+    Header set Access-Control-Allow-Origin "*"
+    Header unset X-Frame-Options
+  </FilesMatch>
+</IfModule>
