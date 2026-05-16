@@ -228,23 +228,33 @@ function loadVideo(v) {
 
 const videoCards = document.querySelectorAll('.srv-card--video');
 
-const videoLazyObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const v = entry.target.querySelector('video');
-    if (v) loadVideo(v);
-    videoLazyObserver.unobserve(entry.target);
-  });
-}, { rootMargin: '200px' });
-
-videoCards.forEach(card => videoLazyObserver.observe(card));
+videoCards.forEach(card => {
+  const v = card.querySelector('video');
+  if (v && !v.poster) {
+    const obs = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      loadVideo(v);
+      obs.disconnect();
+    }, { rootMargin: '200px' });
+    obs.observe(card);
+  }
+});
 
 function playCardVideo(card) {
   const v = card && card.querySelector('video');
   if (!v) return;
   loadVideo(v);
   card.classList.add('is-playing');
-  v.play();
+  if (v.poster) {
+    const t = getPreviewTime(v);
+    const doSeekAndPlay = () => {
+      v.currentTime = t;
+      v.addEventListener('seeked', () => v.play(), { once: true });
+    };
+    v.readyState >= 1 ? doSeekAndPlay() : v.addEventListener('loadedmetadata', doSeekAndPlay, { once: true });
+  } else {
+    v.play();
+  }
 }
 function pauseCardVideo(card) {
   const v = card && card.querySelector('video');
