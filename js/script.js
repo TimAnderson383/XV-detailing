@@ -2,16 +2,6 @@
    XV-Detailing · script.js
    ═══════════════════════════════════════ */
 
-/* ── SERVICES ACCORDION ────────────── */
-document.querySelectorAll('.js-srl-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.closest('.srl-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.srl-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
-
 /* ── HEADER SCROLL ─────────────────── */
 const header = document.getElementById('header');
 let lastY = 0;
