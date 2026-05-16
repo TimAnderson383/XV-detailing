@@ -223,7 +223,9 @@ function loadVideo(v) {
   if (!source || source.src) return;
   source.src = source.dataset.src;
   v.load();
-  v.addEventListener('loadedmetadata', () => { v.currentTime = getPreviewTime(v); }, { once: true });
+  if (!v.poster) {
+    v.addEventListener('loadedmetadata', () => { v.currentTime = getPreviewTime(v); }, { once: true });
+  }
 }
 
 const videoCards = document.querySelectorAll('.srv-card--video');
@@ -243,16 +245,14 @@ videoCards.forEach(card => {
 function playCardVideo(card) {
   const v = card && card.querySelector('video');
   if (!v) return;
-  loadVideo(v);
   card.classList.add('is-playing');
   if (v.poster) {
+    loadVideo(v);
     const t = getPreviewTime(v);
-    const doSeekAndPlay = () => {
-      v.currentTime = t;
-      v.addEventListener('seeked', () => v.play(), { once: true });
-    };
-    v.readyState >= 1 ? doSeekAndPlay() : v.addEventListener('loadedmetadata', doSeekAndPlay, { once: true });
+    const tryPlay = () => { v.currentTime = t; v.play().catch(() => {}); };
+    v.readyState >= 2 ? tryPlay() : v.addEventListener('canplay', tryPlay, { once: true });
   } else {
+    loadVideo(v);
     v.play();
   }
 }
@@ -261,7 +261,11 @@ function pauseCardVideo(card) {
   if (!v) return;
   card.classList.remove('is-playing');
   v.pause();
-  v.currentTime = getPreviewTime(v);
+  if (v.poster) {
+    v.load();
+  } else {
+    v.currentTime = getPreviewTime(v);
+  }
 }
 
 let scrollingFromHotspot = false;
