@@ -522,5 +522,26 @@ function closeFormModal() {
 if (openFormBtn) openFormBtn.addEventListener('click', openFormModal);
 if (formModalOverlay) formModalOverlay.addEventListener('click', closeFormModal);
 if (formModalClose) formModalClose.addEventListener('click', closeFormModal);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFormModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeFormModal(); closePrivacyModal(); } });
+
+/* ── PRIVACY MODAL ───────────────────── */
+const privacyModal        = document.getElementById('privacyModal');
+const privacyModalOverlay = document.getElementById('privacyModalOverlay');
+const privacyModalClose   = document.getElementById('privacyModalClose');
+const openPrivacyBtns     = document.querySelectorAll('#openPrivacy, #footerPrivacy');
+
+function openPrivacyModal() {
+  privacyModal.classList.add('open');
+  privacyModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closePrivacyModal() {
+  privacyModal.classList.remove('open');
+  privacyModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+openPrivacyBtns.forEach(btn => btn.addEventListener('click', openPrivacyModal));
+if (privacyModalOverlay) privacyModalOverlay.addEventListener('click', closePrivacyModal);
+if (privacyModalClose)   privacyModalClose.addEventListener('click', closePrivacyModal);
 
