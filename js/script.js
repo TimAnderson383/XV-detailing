@@ -551,36 +551,7 @@ function closeFormModal() {
 if (openFormBtn) openFormBtn.addEventListener('click', openFormModal);
 if (formModalOverlay) formModalOverlay.addEventListener('click', closeFormModal);
 if (formModalClose) formModalClose.addEventListener('click', closeFormModal);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeFormModal(); closePrivacyModal(); closeLightbox(); } });
-
-/* ── PHOTO LIGHTBOX ─────────────────── */
-const lightbox        = document.getElementById('lightbox');
-const lightboxImg     = document.getElementById('lightboxImg');
-const lightboxOverlay = document.getElementById('lightboxOverlay');
-const lightboxClose   = document.getElementById('lightboxClose');
-
-function openLightbox(src, alt) {
-  lightboxImg.src = src;
-  lightboxImg.alt = alt || '';
-  lightbox.classList.add('open');
-  lightbox.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  lightbox.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-
-document.querySelectorAll('.rev-photo-btn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    openLightbox(btn.dataset.photo, btn.querySelector('img').alt);
-  });
-});
-if (lightboxOverlay) lightboxOverlay.addEventListener('click', closeLightbox);
-if (lightboxClose)   lightboxClose.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeFormModal(); closePrivacyModal(); } });
 
 /* ── PRIVACY MODAL ───────────────────── */
 const privacyModal        = document.getElementById('privacyModal');
