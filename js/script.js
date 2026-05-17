@@ -188,6 +188,10 @@ sections.forEach(s => navHighlight.observe(s));
 /* ── HOTSPOT Z-INDEX + TAP ─────────── */
 const allHotspots = document.querySelectorAll('.hotspot');
 
+allHotspots.forEach(h => h.classList.add('hotspot--init'));
+const lastHsDelay = Math.max(...Array.from(allHotspots).map(h => parseInt(h.dataset.delay || '0')));
+setTimeout(() => allHotspots.forEach(h => h.classList.remove('hotspot--init')), (1.4 + lastHsDelay * 2 + 2) * 1000);
+
 function activateHotspot(hs) {
   allHotspots.forEach(h => { h.style.zIndex = ''; });
   if (hs) hs.style.zIndex = '100';
@@ -244,7 +248,14 @@ function playCardVideo(card) {
   if (!v) return;
   loadVideo(v);
   card.classList.add('is-playing');
-  v.play();
+  const playPromise = v.play();
+  if (playPromise) {
+    playPromise.catch(() => {
+      v.addEventListener('canplay', () => {
+        if (card.classList.contains('is-playing')) v.play();
+      }, { once: true });
+    });
+  }
 }
 function pauseCardVideo(card) {
   const v = card && card.querySelector('video');
@@ -256,14 +267,28 @@ function pauseCardVideo(card) {
 
 let scrollingFromHotspot = false;
 
-videoCards.forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    if (scrollingFromHotspot) return;
-    videoCards.forEach(c => { if (c !== card) pauseCardVideo(c); });
-    playCardVideo(card);
+if (isTouchDevice) {
+  const mobileVideoObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        videoCards.forEach(c => { if (c !== entry.target) pauseCardVideo(c); });
+        playCardVideo(entry.target);
+      } else {
+        pauseCardVideo(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  videoCards.forEach(card => mobileVideoObserver.observe(card));
+} else {
+  videoCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (scrollingFromHotspot) return;
+      videoCards.forEach(c => { if (c !== card) pauseCardVideo(c); });
+      playCardVideo(card);
+    });
+    card.addEventListener('mouseleave', () => { if (!scrollingFromHotspot) pauseCardVideo(card); });
   });
-  card.addEventListener('mouseleave', () => { if (!scrollingFromHotspot) pauseCardVideo(card); });
-});
+}
 
 allHotspots.forEach(hs => {
   hs.addEventListener('mouseenter', () => activateHotspot(hs));
@@ -288,9 +313,13 @@ allHotspots.forEach(hs => {
       videoCards.forEach(c => c.style.pointerEvents = 'none');
       window.scrollTo({ top: y, behavior: 'smooth' });
       setTimeout(() => {
-        scrollingFromHotspot = false;
-        videoCards.forEach(c => c.style.pointerEvents = '');
         playCardVideo(target);
+        const unlock = () => {
+          scrollingFromHotspot = false;
+          videoCards.forEach(c => c.style.pointerEvents = '');
+          window.removeEventListener('mousemove', unlock);
+        };
+        window.addEventListener('mousemove', unlock);
       }, 900);
     }, delay);
   });
@@ -522,7 +551,36 @@ function closeFormModal() {
 if (openFormBtn) openFormBtn.addEventListener('click', openFormModal);
 if (formModalOverlay) formModalOverlay.addEventListener('click', closeFormModal);
 if (formModalClose) formModalClose.addEventListener('click', closeFormModal);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeFormModal(); closePrivacyModal(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeFormModal(); closePrivacyModal(); closeLightbox(); } });
+
+/* ── PHOTO LIGHTBOX ─────────────────── */
+const lightbox        = document.getElementById('lightbox');
+const lightboxImg     = document.getElementById('lightboxImg');
+const lightboxOverlay = document.getElementById('lightboxOverlay');
+const lightboxClose   = document.getElementById('lightboxClose');
+
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || '';
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.rev-photo-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    openLightbox(btn.dataset.photo, btn.querySelector('img').alt);
+  });
+});
+if (lightboxOverlay) lightboxOverlay.addEventListener('click', closeLightbox);
+if (lightboxClose)   lightboxClose.addEventListener('click', closeLightbox);
 
 /* ── PRIVACY MODAL ───────────────────── */
 const privacyModal        = document.getElementById('privacyModal');
