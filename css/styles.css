@@ -1703,11 +1703,11 @@ a.r-badge:hover { background: var(--card2); border-color: rgba(255,255,255,.15);
   border: none;
   padding: 0;
   font-size: 13px;
-  color: var(--dim);
+  color: #999;
   cursor: pointer;
   text-align: center;
 }
-.footer__policy:hover { color: var(--muted); }
+.footer__policy:hover { color: #ccc; }
 
 /* ─────────────────────────────────────
    FOOTER
@@ -1735,7 +1735,7 @@ a.r-badge:hover { background: var(--card2); border-color: rgba(255,255,255,.15);
 }
 .footer__nav a {
   font-size: 14px;
-  color: var(--muted);
+  color: #999;
   transition: color .18s;
 }
 .footer__nav a:hover { color: var(--accent); }
@@ -1756,7 +1756,7 @@ a.r-badge:hover { background: var(--card2); border-color: rgba(255,255,255,.15);
 .footer__addr,
 .footer__hours {
   font-size: 13px;
-  color: var(--muted);
+  color: #999;
 }
 
 .footer__bottom {
@@ -1768,14 +1768,14 @@ a.r-badge:hover { background: var(--card2); border-color: rgba(255,255,255,.15);
 .footer__bottom span,
 .footer__bottom a {
   font-size: 13px;
-  color: var(--dim);
+  color: #999;
 }
-.footer__bottom a:hover { color: var(--muted); }
+.footer__bottom a:hover { color: #ccc; }
 .footer__dev-wrap { text-align: center; }
 .footer__policy { text-align: right; }
 
 .footer__dev-link {
-  color: var(--dim);
+  color: #999;
   font-weight: 700;
   transition: color .18s;
 }
