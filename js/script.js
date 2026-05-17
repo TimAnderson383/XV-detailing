@@ -307,7 +307,7 @@ allHotspots.forEach(hs => {
     const isMobile = window.matchMedia('(hover: none)').matches;
     const delay = (isMobile && !isOpen) ? 2000 : 0;
     setTimeout(() => {
-      const headerH = document.querySelector('.header')?.offsetHeight || 80;
+      const headerH = header ? header.offsetHeight : 80;
       const y = target.getBoundingClientRect().top + window.pageYOffset - headerH;
       scrollingFromHotspot = true;
       videoCards.forEach(c => c.style.pointerEvents = 'none');
