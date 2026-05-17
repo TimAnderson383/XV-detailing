@@ -521,23 +521,32 @@ document.querySelectorAll('[data-slider]').forEach(slider => {
   const before = slider.querySelector('.case-before');
   const handle = slider.querySelector('.case-handle');
   let dragging = false;
+  let cachedRect = null;
+
+  function startDrag() {
+    dragging = true;
+    cachedRect = slider.getBoundingClientRect(); // read once at drag start
+  }
 
   function setPos(clientX) {
-    const rect = slider.getBoundingClientRect();
-    const pct  = Math.max(2, Math.min(98, (clientX - rect.left) / rect.width * 100));
+    if (!cachedRect) cachedRect = slider.getBoundingClientRect();
+    const pct = Math.max(2, Math.min(98, (clientX - cachedRect.left) / cachedRect.width * 100));
     before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
     handle.style.left     = pct + '%';
   }
 
-  handle.addEventListener('mousedown',  e => { dragging = true; e.preventDefault(); });
+  handle.addEventListener('mousedown',  e => { startDrag(); e.preventDefault(); });
   document.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
-  document.addEventListener('mouseup',   () => { dragging = false; });
+  document.addEventListener('mouseup',   () => { dragging = false; cachedRect = null; });
 
-  handle.addEventListener('touchstart', e => { dragging = true; }, { passive: true });
+  handle.addEventListener('touchstart', () => { startDrag(); }, { passive: true });
   document.addEventListener('touchmove', e => {
     if (dragging) setPos(e.touches[0].clientX);
   }, { passive: true });
-  document.addEventListener('touchend', () => { dragging = false; });
+  document.addEventListener('touchend', () => { dragging = false; cachedRect = null; });
+
+  // Invalidate cache on resize
+  new ResizeObserver(() => { cachedRect = null; }).observe(slider);
 });
 
 /* ── FORM MODAL ────────────────────── */
