@@ -475,12 +475,14 @@ function openPriceModal(serviceKey) {
   document.getElementById('priceModalList').innerHTML    = buildPriceRows(data.rows);
   priceModal.classList.add('open');
   priceModal.setAttribute('aria-hidden', 'false');
+  priceModal.removeAttribute('inert');
   document.body.style.overflow = 'hidden';
 }
 
 function closePriceModal() {
   priceModal.classList.remove('open');
   priceModal.setAttribute('aria-hidden', 'true');
+  priceModal.setAttribute('inert', '');
   document.body.style.overflow = '';
 }
 
@@ -539,12 +541,14 @@ function openFormModal(serviceKey) {
   if (sel && serviceKey) sel.value = serviceKey;
   formModal.classList.add('open');
   formModal.setAttribute('aria-hidden', 'false');
+  formModal.removeAttribute('inert');
   document.body.style.overflow = 'hidden';
 }
 
 function closeFormModal() {
   formModal.classList.remove('open');
   formModal.setAttribute('aria-hidden', 'true');
+  formModal.setAttribute('inert', '');
   document.body.style.overflow = '';
 }
 
@@ -562,11 +566,13 @@ const openPrivacyBtns     = document.querySelectorAll('#openPrivacy, #footerPriv
 function openPrivacyModal() {
   privacyModal.classList.add('open');
   privacyModal.setAttribute('aria-hidden', 'false');
+  privacyModal.removeAttribute('inert');
   document.body.style.overflow = 'hidden';
 }
 function closePrivacyModal() {
   privacyModal.classList.remove('open');
   privacyModal.setAttribute('aria-hidden', 'true');
+  privacyModal.setAttribute('inert', '');
   document.body.style.overflow = '';
 }
 
