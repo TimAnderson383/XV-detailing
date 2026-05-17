@@ -279,6 +279,16 @@ if (isTouchDevice) {
     });
   }, { threshold: 0.6 });
   videoCards.forEach(card => mobileVideoObserver.observe(card));
+
+  // First touch unlocks autoplay: retry cards already marked as playing but paused
+  document.addEventListener('touchstart', () => {
+    videoCards.forEach(card => {
+      const v = card.querySelector('video');
+      if (card.classList.contains('is-playing') && v && v.paused) {
+        v.play().catch(() => {});
+      }
+    });
+  }, { once: true, passive: true });
 } else {
   videoCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
