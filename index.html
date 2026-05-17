@@ -30,7 +30,8 @@
   <meta name="twitter:image"       content="https://xv-detailing.ru/assets/images/OG.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
   <link rel="stylesheet" href="css/styles.css">
   <script type="application/ld+json">
   {
@@ -286,7 +287,7 @@
           <video class="srv-card__video" muted loop playsinline data-preview="0.6">
             <source data-src="assets/media/1.webm" type="video/webm">
           </video>
-          <img class="srv-card__poster" src="assets/images/poster_1.jpg" alt="" aria-hidden="true">
+          <img class="srv-card__poster" loading="lazy" src="assets/images/poster_1.jpg" alt="" aria-hidden="true">
           <div class="srv-card__overlay"></div>
           <div class="srv-card__body">
             <h3 class="srv-card__title">Оклейка пленкой</h3>
@@ -314,7 +315,7 @@
           <video class="srv-card__video" muted loop playsinline data-preview="0.6">
             <source data-src="assets/media/2.webm" type="video/webm">
           </video>
-          <img class="srv-card__poster" src="assets/images/poster_2.jpg" alt="" aria-hidden="true">
+          <img class="srv-card__poster" loading="lazy" src="assets/images/poster_2.jpg" alt="" aria-hidden="true">
           <div class="srv-card__overlay"></div>
           <div class="srv-card__body">
             <h3 class="srv-card__title">Полировка и керамика</h3>
@@ -342,7 +343,7 @@
           <video class="srv-card__video" muted loop playsinline data-preview="0.6">
             <source data-src="assets/media/3.webm" type="video/webm">
           </video>
-          <img class="srv-card__poster" src="assets/images/poster_3.jpg" alt="" aria-hidden="true">
+          <img class="srv-card__poster" loading="lazy" src="assets/images/poster_3.jpg" alt="" aria-hidden="true">
           <div class="srv-card__overlay"></div>
           <div class="srv-card__body">
             <h3 class="srv-card__title">Химчистка салона</h3>
@@ -370,7 +371,7 @@
           <video class="srv-card__video" muted loop playsinline data-preview="0.9">
             <source data-src="assets/media/4.webm" type="video/webm">
           </video>
-          <img class="srv-card__poster" src="assets/images/poster_4.jpg" alt="" aria-hidden="true">
+          <img class="srv-card__poster" loading="lazy" src="assets/images/poster_4.jpg" alt="" aria-hidden="true">
           <div class="srv-card__overlay"></div>
           <div class="srv-card__body">
             <h3 class="srv-card__title">Шумоизоляция</h3>
@@ -398,7 +399,7 @@
           <video class="srv-card__video" muted loop playsinline data-preview="0.5">
             <source data-src="assets/media/5.webm" type="video/webm">
           </video>
-          <img class="srv-card__poster" src="assets/images/poster_5.jpg" alt="" aria-hidden="true">
+          <img class="srv-card__poster" loading="lazy" src="assets/images/poster_5.jpg" alt="" aria-hidden="true">
           <div class="srv-card__overlay"></div>
           <div class="srv-card__body">
             <h3 class="srv-card__title">Реставрация кожи</h3>
@@ -426,7 +427,7 @@
           <video class="srv-card__video" muted loop playsinline data-preview="2.4">
             <source data-src="assets/media/6.webm" type="video/webm">
           </video>
-          <img class="srv-card__poster" src="assets/images/poster_6.jpg" alt="" aria-hidden="true">
+          <img class="srv-card__poster" loading="lazy" src="assets/images/poster_6.jpg" alt="" aria-hidden="true">
           <div class="srv-card__overlay"></div>
           <div class="srv-card__body">
             <h3 class="srv-card__title">Дооснащение авто</h3>
@@ -796,7 +797,7 @@
         <p class="rev-text">Отличная компания Х.V Detailing. Выполнили полировку и оклейку фар на высшем уровне. Все очень понравилось, ребята знают свое дело. Однозначно рекомендую! Теперь только к ним.</p>
         <span class="rev-svc">Полировка · Оклейка фар</span>
         <button class="rev-photo-btn" aria-label="Посмотреть фото работы" data-photo="assets/images/review_aleks.jpg">
-          <img src="assets/images/review_aleks.jpg" alt="Фото работы — Александр Сакерин" class="rev-photo-thumb">
+          <img loading="lazy" src="assets/images/review_aleks.jpg" alt="Фото работы — Александр Сакерин" class="rev-photo-thumb">
         </button>
       </a>
 
@@ -825,7 +826,7 @@
         <p class="rev-text">Отличная компания выполнили работу и все пожелания на отлично!</p>
         <span class="rev-svc">Бронепленка</span>
         <button class="rev-photo-btn" aria-label="Посмотреть фото работы" data-photo="assets/images/review_pavel.jpg">
-          <img src="assets/images/review_pavel.jpg" alt="Фото работы — Павел Гальцев" class="rev-photo-thumb">
+          <img loading="lazy" src="assets/images/review_pavel.jpg" alt="Фото работы — Павел Гальцев" class="rev-photo-thumb">
         </button>
       </a>
 
@@ -841,7 +842,7 @@
         <p class="rev-text">Отличная работа, тонировка фар + оклейка стоек, работа на 5+, спасибо большое!</p>
         <span class="rev-svc">Тонировка фар · Оклейка стоек</span>
         <button class="rev-photo-btn" aria-label="Посмотреть фото работы" data-photo="assets/images/review_egor.jpg">
-          <img src="assets/images/review_egor.jpg" alt="Фото работы — Егор Тенигин" class="rev-photo-thumb">
+          <img loading="lazy" src="assets/images/review_egor.jpg" alt="Фото работы — Егор Тенигин" class="rev-photo-thumb">
         </button>
       </a>
 
