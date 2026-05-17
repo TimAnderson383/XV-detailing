@@ -1027,14 +1027,14 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 /* Placeholder backgrounds */
-.case-c1b { background: url('../assets/images/before_1.jpg') center/cover no-repeat; }
-.case-c1a { background: url('../assets/images/after_1.jpg') center/cover no-repeat; }
-.case-c2b { background: url('../assets/images/before_2.jpg') center/cover no-repeat; }
-.case-c2a { background: url('../assets/images/after_2.jpg') center/cover no-repeat; }
-.case-c3b { background: url('../assets/images/before_3.jpg') center/cover no-repeat; }
-.case-c3a { background: url('../assets/images/after_3.jpg') center/cover no-repeat; }
-.case-c4b { background: url('../assets/images/before_4.jpg') center/cover no-repeat; }
-.case-c4a { background: url('../assets/images/after_4.jpg') center/cover no-repeat; }
+.case-c1b { background: url('../assets/images/before_1.webp') center/cover no-repeat; }
+.case-c1a { background: url('../assets/images/after_1.webp') center/cover no-repeat; }
+.case-c2b { background: url('../assets/images/before_2.webp') center/cover no-repeat; }
+.case-c2a { background: url('../assets/images/after_2.webp') center/cover no-repeat; }
+.case-c3b { background: url('../assets/images/before_3.webp') center/cover no-repeat; }
+.case-c3a { background: url('../assets/images/after_3.webp') center/cover no-repeat; }
+.case-c4b { background: url('../assets/images/before_4.webp') center/cover no-repeat; }
+.case-c4a { background: url('../assets/images/after_4.webp') center/cover no-repeat; }
 .case-c5b { background: linear-gradient(145deg, #201428 0%, #180e1e 100%); }
 .case-c5a { background: linear-gradient(145deg, #0c1820 0%, #081218 100%); }
 
